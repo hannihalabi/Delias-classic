@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Delias Sneltransport - Internationaal verhuisbedrijf gespecialiseerd in transport naar Spanje, Portugal, Italië en Frankrijk">
+    <title>Delias Sneltransport - Internationaal Verhuisbedrijf</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Lottie Animation -->
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <img src="logo.webp" alt="Delias Sneltransport">
+                </div>
+
+                <!-- Contact Info -->
+                <div class="language-toggle" id="languageToggle">
+                    <button class="language-toggle__button" id="languageToggleButton" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="language-toggle__flag" aria-hidden="true">🇬🇧</span>
+                        <span class="language-toggle__text">English</span>
+                    </button>
+                    <ul class="language-toggle__menu" id="languageMenu" aria-label="Spraak opties">
+                        <li><button type="button" data-language="en">🇬🇧 English</button></li>
+                        <li><button type="button" data-language="fr">🇫🇷 Français</button></li>
+                        <li><button type="button" data-language="es">🇪🇸 Español</button></li>
+                        <li><button type="button" data-language="pt">🇵🇹 Português</button></li>
+                        <li><button type="button" data-language="nl">🇳🇱 Nederlands</button></li>
+                        <li><button type="button" data-language="ar">🇸🇦 العربية</button></li>
+                        <li><button type="button" data-language="tr">🇹🇷 Türkçe</button></li>
+                        <li><button type="button" data-language="zh">🇨🇳 中文</button></li>
+                        <li><button type="button" data-language="ru">🇷🇺 Русский</button></li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#services" class="nav-link" data-i18n="nav_services">Diensten</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="nav_about">Over ons</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+                </ul>
+
+                <div class="nav-contact">
+                    <a href="tel:0616097005" class="nav-cta" data-i18n="nav_cta">Neem contact op</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <a href="tel:0616097005" class="mobile-phone-cta" aria-label="Ring Delias Sneltransport">📞</a>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Background Video -->
+        <video class="hero-video" autoplay muted playsinline id="heroVideo">
+            <source src="truck-cool.mp4" type="video/mp4">
+            <source src="truck-2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-i18n="hero_title">Zoekt u een internationaal verhuisbedrijf?</h1>
+                <p class="hero-tagline" data-i18n="hero_tagline">Betrouwbaar transport naar Spanje, Portugal, Italië en Frankrijk sinds 1989</p>
+                <a href="#contact" class="cta-button" data-i18n="hero_cta">Neem contact op</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lottie Animation Section -->
+    <section class="lottie-section">
+        <div class="container">
+            <div class="lottie-wrapper">
+                <dotlottie-wc src="https://lottie.host/766347f7-a84a-4154-9e80-d4eb8848e28a/llHSPizzbQ.lottie"
+                    style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title" data-i18n="services_title">Onze diensten</h2>
+            <p class="section-subtitle" data-i18n="services_subtitle">Professionele transportoplossingen op maat</p>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="service_small_title">Kleinere vrachtjes</h3>
+                    <p data-i18n="service_small_text">We bieden een scala aan vervoersopties die zijn afgestemd op kleine vrachtjes, waaronder snelle
+                        koeriersdiensten en speciaal vervoer voor kwetsbare items.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 16 12 12 8 16"></polyline>
+                            <line x1="12" y1="12" x2="12" y2="21"></line>
+                            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                            <polyline points="16 16 12 12 8 16"></polyline>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="service_courier_title">Koeriersdiensten</h3>
+                    <p data-i18n="service_courier_text">Of het nu gaat om een spoedlevering binnen dezelfde stad of een internationale zending, onze
+                        ervaren koeriers zorgen voor veilige en tijdige levering.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="service_special_title">Speciaal transport</h3>
+                    <p data-i18n="service_special_text">Transport van boten, caravans, motors en scooters met gespecialiseerde trailers en apparatuur
+                        voor maximale veiligheid tijdens het vervoer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content glass">
+                <div class="about-text">
+                    <h2 class="section-title" data-i18n="about_title">Over ons</h2>
+                    <div class="about-grid">
+                        <div class="about-item">
+                            <h3 data-i18n="about_history_title">Onze geschiedenis</h3>
+                            <p data-i18n="about_history_text">Wat in 1989 vanuit een bescheiden woonkamer begon, is inmiddels uitgegroeid tot een groot
+                                verhuisbedrijf. Het team heeft in de loop der jaren met trots een indrukwekkend netwerk
+                                opgebouwd.</p>
+                        </div>
+
+                        <div class="about-item">
+                            <h3 data-i18n="about_reliability_title">Betrouwbaarheid</h3>
+                            <p data-i18n="about_reliability_text">De jarenlange ervaring en het uitgebreide logistieke netwerk garanderen een efficiënte
+                                levering van goederen, waardoor klanten tijd en geld besparen op transport.</p>
+                        </div>
+
+                        <div class="about-item">
+                            <h3 data-i18n="about_communication_title">Transparante communicatie</h3>
+                            <p data-i18n="about_communication_text">Het team is sterk klantgericht, wat duidelijk naar voren komt in de klantenservice. Door
+                                een grondige kennis van hun klanten kunnen we snel en efficiënt op elke vraag reageren.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contact_title">Neem contact op</h2>
+            <p class="section-subtitle" data-i18n="contact_subtitle">Vraag vandaag nog een gratis offerte aan</p>
+
+            <div class="contact-wrapper">
+                <form class="contact-form glass" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-i18n="form_name_label">Naam *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-i18n="form_email_label">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" data-i18n="form_phone_label">Telefoon *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service" data-i18n="form_service_label">Dienst</label>
+                            <select id="service" name="service">
+                                <option value="" data-i18n="form_service_placeholder">Selecteer een dienst</option>
+                                <option value="verhuizing" data-i18n="option_moving">Internationale verhuizing</option>
+                                <option value="vracht" data-i18n="option_smallfreight">Kleinere vrachtjes</option>
+                                <option value="koerier" data-i18n="option_courier">Koeriersdienst</option>
+                                <option value="speciaal" data-i18n="option_special">Speciaal transport</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message_label">Bericht *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="cta-button" data-i18n="form_submit">Verstuur bericht</button>
+                </form>
+
+                <div class="contact-info glass">
+                    <h3 data-i18n="contactinfo_title">Contactinformatie</h3>
+                    <div class="info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        <div>
+                            <h4 data-i18n="contact_phone_label">Telefoon</h4>
+                            <a href="tel:0616097005">+31 6 16097005</a>
+                            <p data-i18n="contact_phone_hours">Ma t/m vr bereikbaar tot 17:00</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div>
+                            <h4 data-i18n="contact_hours_label">Openingstijden</h4>
+                            <p data-i18n="contact_hours_text">Maandag - vrijdag<br>09:00 - 17:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p data-i18n="footer_rights">&copy; 2024 Delias Sneltransport. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
