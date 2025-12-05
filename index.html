@@ -31,26 +31,6 @@
                     <img src="logo.webp" alt="Delias Sneltransport">
                 </div>
 
-                <!-- Contact Info -->
-                <div class="language-toggle" id="languageToggle">
-                    <button class="language-toggle__button" id="languageToggleButton" aria-haspopup="true"
-                        aria-expanded="false">
-                        <span class="language-toggle__flag" aria-hidden="true">🇬🇧</span>
-                        <span class="language-toggle__text">English</span>
-                    </button>
-                    <ul class="language-toggle__menu" id="languageMenu" aria-label="Spraak opties">
-                        <li><button type="button" data-language="en">🇬🇧 English</button></li>
-                        <li><button type="button" data-language="fr">🇫🇷 Français</button></li>
-                        <li><button type="button" data-language="es">🇪🇸 Español</button></li>
-                        <li><button type="button" data-language="pt">🇵🇹 Português</button></li>
-                        <li><button type="button" data-language="nl">🇳🇱 Nederlands</button></li>
-                        <li><button type="button" data-language="ar">🇸🇦 العربية</button></li>
-                        <li><button type="button" data-language="tr">🇹🇷 Türkçe</button></li>
-                        <li><button type="button" data-language="zh">🇨🇳 中文</button></li>
-                        <li><button type="button" data-language="ru">🇷🇺 Русский</button></li>
-                    </ul>
-                </div>
-
                 <!-- Mobile Menu Toggle -->
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                     <span></span>
@@ -60,45 +40,70 @@
 
                 <!-- Navigation Menu -->
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="nav-link active" data-i18n="nav_home">Home</a></li>
-                    <li><a href="#services" class="nav-link" data-i18n="nav_services">Diensten</a></li>
-                    <li><a href="#about" class="nav-link" data-i18n="nav_about">Over ons</a></li>
-                    <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#about" class="nav-link">About us</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
 
                 <div class="nav-contact">
-                    <a href="tel:0616097005" class="nav-cta" data-i18n="nav_cta">Neem contact op</a>
+                    <a href="tel:0616097005" class="nav-cta">Book now</a>
                 </div>
             </div>
         </div>
     </nav>
     <div class="menu-overlay" id="menuOverlay"></div>
+    <a href="https://wa.me/31616097005" class="mobile-whatsapp-cta" aria-label="WhatsApp Delias Sneltransport" target="_blank" rel="noopener">
+        <img src="WhatsApp-logo.webp" alt="WhatsApp">
+    </a>
     <a href="tel:0616097005" class="mobile-phone-cta" aria-label="Ring Delias Sneltransport">📞</a>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <!-- Background Video -->
         <video class="hero-video" autoplay muted playsinline id="heroVideo">
-            <source src="truck-cool.mp4" type="video/mp4">
-            <source src="truck-2.mp4" type="video/mp4">
+            <source src="AI-videos/Moving-car.mp4" type="video/mp4">
+            <source src="AI-videos/Snow-car.mp4" type="video/mp4">
+            <source src="AI-videos/Sun-moving-car.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title" data-i18n="hero_title">Zoekt u een internationaal verhuisbedrijf?</h1>
-                <p class="hero-tagline" data-i18n="hero_tagline">Betrouwbaar transport naar Spanje, Portugal, Italië en Frankrijk sinds 1989</p>
-                <a href="#contact" class="cta-button" data-i18n="hero_cta">Neem contact op</a>
+                <h1 class="hero-title">Reliable international transportation company</h1>
+                <p class="hero-tagline">From door to door across Europe since 1989</p>
+                <a href="#contact" class="cta-button">Book now</a>
             </div>
         </div>
     </section>
 
-    <!-- Lottie Animation Section -->
-    <section class="lottie-section">
+    <!-- About Section -->
+    <section class="about" id="about">
         <div class="container">
-            <div class="lottie-wrapper">
-                <dotlottie-wc src="https://lottie.host/766347f7-a84a-4154-9e80-d4eb8848e28a/llHSPizzbQ.lottie"
-                    style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
+            <div class="about-content glass">
+                <div class="about-text">
+                    <h2 class="section-title">About us</h2>
+                    <div class="lottie-wrapper about-lottie">
+                        <dotlottie-wc src="https://lottie.host/766347f7-a84a-4154-9e80-d4eb8848e28a/llHSPizzbQ.lottie"
+                            style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-item">
+                            <h3>Our history</h3>
+                            <p>What started in 1989 from a modest living room has grown into a large moving company with a network we are proud of.</p>
+                        </div>
+
+                        <div class="about-item">
+                            <h3>Reliability</h3>
+                            <p>Years of experience and a broad logistics network guarantee efficient deliveries, saving clients both time and money.</p>
+                        </div>
+
+                        <div class="about-item">
+                            <h3>Transparent communication</h3>
+                            <p>Our customer focus shines through our service. Knowing our clients well lets us respond quickly and efficiently to every request.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -106,8 +111,8 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title" data-i18n="services_title">Onze diensten</h2>
-            <p class="section-subtitle" data-i18n="services_subtitle">Professionele transportoplossingen op maat</p>
+            <h2 class="section-title">Our services</h2>
+            <p class="section-subtitle">Tailor-made professional transport solutions</p>
 
             <div class="services-grid">
                 <!-- Service 1 -->
@@ -121,9 +126,8 @@
                             <circle cx="18.5" cy="18.5" r="2.5"></circle>
                         </svg>
                     </div>
-                    <h3 data-i18n="service_small_title">Kleinere vrachtjes</h3>
-                    <p data-i18n="service_small_text">We bieden een scala aan vervoersopties die zijn afgestemd op kleine vrachtjes, waaronder snelle
-                        koeriersdiensten en speciaal vervoer voor kwetsbare items.</p>
+                    <h3>Small shipments</h3>
+                    <p>We offer a range of transport options for compact loads, including express couriers and extra care for delicate items.</p>
                 </div>
 
                 <!-- Service 2 -->
@@ -137,9 +141,8 @@
                             <polyline points="16 16 12 12 8 16"></polyline>
                         </svg>
                     </div>
-                    <h3 data-i18n="service_courier_title">Koeriersdiensten</h3>
-                    <p data-i18n="service_courier_text">Of het nu gaat om een spoedlevering binnen dezelfde stad of een internationale zending, onze
-                        ervaren koeriers zorgen voor veilige en tijdige levering.</p>
+                    <h3>Courier services</h3>
+                    <p>From urgent deliveries within the same city to international consignments, our experienced couriers ensure safe and punctual transport.</p>
                 </div>
 
                 <!-- Service 3 -->
@@ -151,41 +154,8 @@
                             <polyline points="9 22 9 12 15 12 15 22"></polyline>
                         </svg>
                     </div>
-                    <h3 data-i18n="service_special_title">Speciaal transport</h3>
-                    <p data-i18n="service_special_text">Transport van boten, caravans, motors en scooters met gespecialiseerde trailers en apparatuur
-                        voor maximale veiligheid tijdens het vervoer.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content glass">
-                <div class="about-text">
-                    <h2 class="section-title" data-i18n="about_title">Over ons</h2>
-                    <div class="about-grid">
-                        <div class="about-item">
-                            <h3 data-i18n="about_history_title">Onze geschiedenis</h3>
-                            <p data-i18n="about_history_text">Wat in 1989 vanuit een bescheiden woonkamer begon, is inmiddels uitgegroeid tot een groot
-                                verhuisbedrijf. Het team heeft in de loop der jaren met trots een indrukwekkend netwerk
-                                opgebouwd.</p>
-                        </div>
-
-                        <div class="about-item">
-                            <h3 data-i18n="about_reliability_title">Betrouwbaarheid</h3>
-                            <p data-i18n="about_reliability_text">De jarenlange ervaring en het uitgebreide logistieke netwerk garanderen een efficiënte
-                                levering van goederen, waardoor klanten tijd en geld besparen op transport.</p>
-                        </div>
-
-                        <div class="about-item">
-                            <h3 data-i18n="about_communication_title">Transparante communicatie</h3>
-                            <p data-i18n="about_communication_text">Het team is sterk klantgericht, wat duidelijk naar voren komt in de klantenservice. Door
-                                een grondige kennis van hun klanten kunnen we snel en efficiënt op elke vraag reageren.
-                            </p>
-                        </div>
-                    </div>
+                    <h3>Special transport</h3>
+                    <p>Transport of boats, caravans, motorcycles and scooters with specialized trailers and equipment for maximum safety on the road.</p>
                 </div>
             </div>
         </div>
@@ -194,51 +164,51 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title" data-i18n="contact_title">Neem contact op</h2>
-            <p class="section-subtitle" data-i18n="contact_subtitle">Vraag vandaag nog een gratis offerte aan</p>
+            <h2 class="section-title">Get in touch</h2>
+            <p class="section-subtitle">Request a free quote today</p>
 
             <div class="contact-wrapper">
                 <form class="contact-form glass" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name" data-i18n="form_name_label">Naam *</label>
+                            <label for="name">Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" data-i18n="form_email_label">E-mail *</label>
+                            <label for="email">Email *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone" data-i18n="form_phone_label">Telefoon *</label>
+                            <label for="phone">Phone *</label>
                             <input type="tel" id="phone" name="phone" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="service" data-i18n="form_service_label">Dienst</label>
+                            <label for="service">Service</label>
                             <select id="service" name="service">
-                                <option value="" data-i18n="form_service_placeholder">Selecteer een dienst</option>
-                                <option value="verhuizing" data-i18n="option_moving">Internationale verhuizing</option>
-                                <option value="vracht" data-i18n="option_smallfreight">Kleinere vrachtjes</option>
-                                <option value="koerier" data-i18n="option_courier">Koeriersdienst</option>
-                                <option value="speciaal" data-i18n="option_special">Speciaal transport</option>
+                                <option value="">Select a service</option>
+                                <option value="verhuizing">International relocation</option>
+                                <option value="vracht">Small shipments</option>
+                                <option value="koerier">Courier service</option>
+                                <option value="speciaal">Special transport</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="message" data-i18n="form_message_label">Bericht *</label>
+                        <label for="message">Message *</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
 
-                    <button type="submit" class="cta-button" data-i18n="form_submit">Verstuur bericht</button>
+                    <button type="submit" class="cta-button">Send message</button>
                 </form>
 
                 <div class="contact-info glass">
-                    <h3 data-i18n="contactinfo_title">Contactinformatie</h3>
+                    <h3>Contact information</h3>
                     <div class="info-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
@@ -247,9 +217,9 @@
                             </path>
                         </svg>
                         <div>
-                            <h4 data-i18n="contact_phone_label">Telefoon</h4>
+                            <h4>Phone</h4>
                             <a href="tel:0616097005">+31 6 16097005</a>
-                            <p data-i18n="contact_phone_hours">Ma t/m vr bereikbaar tot 17:00</p>
+                            <p>Mon to Fri reachable until 17:00</p>
                         </div>
                     </div>
 
@@ -260,8 +230,8 @@
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
                         <div>
-                            <h4 data-i18n="contact_hours_label">Openingstijden</h4>
-                            <p data-i18n="contact_hours_text">Maandag - vrijdag<br>09:00 - 17:00</p>
+                            <h4>Opening hours</h4>
+                            <p>Monday - Friday<br>09:00 - 17:00</p>
                         </div>
                     </div>
                 </div>
@@ -272,7 +242,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p data-i18n="footer_rights">&copy; 2024 Delias Sneltransport. Alle rechten voorbehouden.</p>
+            <p>&copy; 2024 Delias Sneltransport. All rights reserved.</p>
         </div>
     </footer>
 
