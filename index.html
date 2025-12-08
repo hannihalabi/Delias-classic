@@ -62,9 +62,9 @@
     <section class="hero" id="home">
         <!-- Background Video -->
         <video class="hero-video" autoplay muted playsinline id="heroVideo">
-            <source src="AI-videos/Moving-car.mp4" type="video/mp4">
             <source src="AI-videos/Snow-car.mp4" type="video/mp4">
-            <source src="AI-videos/Sun-moving-car.mp4" type="video/mp4">
+            <source src="Video-Car.mp4" type="video/mp4">
+            <source src="Hamn-logistik copy.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -73,6 +73,104 @@
                 <h1 class="hero-title">Reliable international transportation company</h1>
                 <p class="hero-tagline">From door to door across Europe since 1989</p>
                 <a href="#contact" class="cta-button">Book now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Routes Section -->
+    <section class="routes" id="routes">
+        <div class="container">
+            <h2 class="section-title">Example of our current routes</h2>
+            <div class="routes-video glass">
+                <video id="routesVideo" playsinline preload="metadata" muted loop>
+                    <source src="Map.mov" type="video/quicktime">
+                    <source src="Map.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Route Planner Section -->
+    <section class="route-planner" id="route-planner">
+        <div class="container">
+            <div class="route-grid glass">
+                <div class="route-form-wrapper">
+                    <h2 class="section-title">Destination calculator</h2>
+                    <p class="section-subtitle">Find distance and estimated drive time between two addresses</p>
+                    <form id="routeForm" class="route-form">
+                        <div class="form-group">
+                            <label for="routeOrigin">From</label>
+                            <input type="text" id="routeOrigin" name="routeOrigin" placeholder="e.g., Berlin, Germany" list="routeOriginSuggestions" required>
+                            <datalist id="routeOriginSuggestions"></datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="routeDestination">To</label>
+                            <input type="text" id="routeDestination" name="routeDestination" placeholder="e.g., Stockholm, Sweden" list="routeDestinationSuggestions" required>
+                            <datalist id="routeDestinationSuggestions"></datalist>
+                        </div>
+                        <button type="submit" class="cta-button">Calculate route</button>
+                        <p class="route-status" id="routeStatus"></p>
+                        <div class="route-progress" id="routeProgress">
+                            <div class="route-progress-track">
+                                <div class="route-progress-bar" id="routeProgressBar"></div>
+                            </div>
+                            <span class="route-progress-text" id="routeProgressText">0%</span>
+                        </div>
+                    </form>
+                    <div class="route-info">
+                        <div>
+                            <h3>Distance</h3>
+                            <p id="routeDistance">—</p>
+                        </div>
+                        <div>
+                            <h3>Expected delivery</h3>
+                            <p id="routeDuration">—</p>
+                        </div>
+                        <div class="freight-type" id="freightType">
+                            <h3>Freight type</h3>
+                            <div class="freight-type-icons">
+                                <img src="seafreight.png" alt="Seafreight" width="48" height="48">
+                                <img src="truck freigh.png" alt="Trucking" width="48" height="48">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freight Section -->
+    <section class="services" id="freight">
+        <div class="container">
+            <h2 class="section-title">Freight solutions</h2>
+            <p class="section-subtitle">Seafreight, Airfreight, Trucking, Warehousing</p>
+
+            <div class="services-grid">
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <img src="seafreight.png" alt="Seafreight" width="48" height="48">
+                    </div>
+                    <h3>Seafreight</h3>
+                    <p>Full-container and consolidated ocean freight with customs-ready documentation and reliable transit times.</p>
+                </div>
+
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <img src="plane freight.png" alt="Airfreight" width="48" height="48">
+                    </div>
+                    <h3>Airfreight</h3>
+                    <p>Priority air solutions for urgent cargo, with end-to-end tracking and airport-to-door delivery.</p>
+                </div>
+
+                <div class="service-card glass">
+                    <div class="service-icon">
+                        <img src="truck freigh.png" alt="Trucking" width="48" height="48">
+                    </div>
+                    <h3>Trucking</h3>
+                    <p>Pan-European trucking for partial and full loads, scheduled line-hauls, and express dedicated vehicles.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -164,8 +262,8 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Get in touch</h2>
-            <p class="section-subtitle">Request a free quote today</p>
+            <h2 class="section-title">Contact us today</h2>
+            <p class="section-subtitle">Request a free quote</p>
 
             <div class="contact-wrapper">
                 <form class="contact-form glass" id="contactForm">
@@ -242,7 +340,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Delias Sneltransport. All rights reserved.</p>
+            <p>&copy; <span id="currentYear">2024</span> Delias Sneltransport. All rights reserved.</p>
         </div>
     </footer>
 
