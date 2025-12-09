@@ -28,6 +28,8 @@ const routeProgress = document.getElementById('routeProgress');
 const routeProgressBar = document.getElementById('routeProgressBar');
 const routeProgressText = document.getElementById('routeProgressText');
 let routeProgressTimer;
+const heritageMedia = document.querySelector('.heritage-media');
+const gallerySlider = document.querySelector('.gallery-slider');
 
 const setProgress = (value) => {
     const clamped = Math.max(0, Math.min(100, value));
@@ -92,6 +94,78 @@ if (heroVideo && heroSources.length > 1) {
         heroVideo.load();
         heroVideo.play();
     });
+}
+
+// === HERITAGE IMAGE NAVIGATION ===
+if (heritageMedia) {
+    const heritageSlides = Array.from(heritageMedia.querySelectorAll('.heritage-image'));
+    if (heritageSlides.length > 0) {
+        const prevHeritage = heritageMedia.querySelector('.heritage-control.prev');
+        const nextHeritage = heritageMedia.querySelector('.heritage-control.next');
+        let heritageIndex = 0;
+        let heritageTimer;
+
+        const showHeritageSlide = (index) => {
+            if (!heritageSlides.length) return;
+            heritageSlides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === index);
+            });
+        };
+
+        const restartHeritageTimer = () => {
+            clearInterval(heritageTimer);
+            if (heritageSlides.length < 2) return;
+            heritageTimer = setInterval(() => moveHeritage(1), 12000);
+        };
+
+        const moveHeritage = (direction) => {
+            heritageIndex = (heritageIndex + direction + heritageSlides.length) % heritageSlides.length;
+            showHeritageSlide(heritageIndex);
+            restartHeritageTimer();
+        };
+
+        // Init
+        showHeritageSlide(heritageIndex);
+        restartHeritageTimer();
+
+        if (prevHeritage) prevHeritage.addEventListener('click', () => moveHeritage(-1));
+        if (nextHeritage) nextHeritage.addEventListener('click', () => moveHeritage(1));
+    }
+}
+
+// === GALLERY SLIDER ===
+if (gallerySlider) {
+    const gallerySlides = Array.from(gallerySlider.querySelectorAll('.gallery-slide'));
+    const prevGallery = gallerySlider.querySelector('.gallery-control.prev');
+    const nextGallery = gallerySlider.querySelector('.gallery-control.next');
+    let galleryIndex = 0;
+    let galleryTimer;
+
+    const showGallerySlide = (index) => {
+        if (!gallerySlides.length) return;
+        gallerySlides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === index);
+        });
+    };
+
+    const restartGalleryTimer = () => {
+        clearInterval(galleryTimer);
+        if (gallerySlides.length < 2) return;
+        galleryTimer = setInterval(() => moveGallery(1), 5000);
+    };
+
+    const moveGallery = (direction) => {
+        galleryIndex = (galleryIndex + direction + gallerySlides.length) % gallerySlides.length;
+        showGallerySlide(galleryIndex);
+        restartGalleryTimer();
+    };
+
+    // Init
+    showGallerySlide(galleryIndex);
+    restartGalleryTimer();
+
+    if (prevGallery) prevGallery.addEventListener('click', () => moveGallery(-1));
+    if (nextGallery) nextGallery.addEventListener('click', () => moveGallery(1));
 }
 
 // === ROUTES VIDEO AUTOPLAY ON VIEW ===
