@@ -3,6 +3,112 @@
 // Core interactions (menu, video, form)
 // ===================================
 
+const normalizeLang = (lang) => (lang || 'en').toLowerCase().split('-')[0];
+const pageLang = normalizeLang(document.documentElement.lang);
+
+const i18n = {
+    en: {
+        form: {
+            error_name: 'Please enter a valid name.',
+            error_email: 'Please enter a valid email address.',
+            error_phone: 'Please enter a valid phone number.',
+            error_message: 'Please enter a message of at least 10 characters.',
+            form_success: 'Thank you for your message! We will contact you as soon as possible.',
+            form_button_success: 'Sent! ✓',
+            form_submit: 'Send message'
+        },
+        route: {
+            calculating: 'Calculating route...',
+            routeNotAvailable: 'Route not available. Please try different locations.',
+            unableToCalculate: 'Unable to calculate route.',
+            couldNotFindPrefix: 'Could not find:',
+            eta: '2–5 days',
+            fromTo: (from, to) => `From "${from}" to "${to}"`
+        },
+        languagePrompt: {
+            question: (name) => `View this site in ${name}?`,
+            switch: 'Switch',
+            dismiss: 'Not now'
+        }
+    },
+    nl: {
+        form: {
+            error_name: 'Vul een geldige naam in.',
+            error_email: 'Vul een geldig e-mailadres in.',
+            error_phone: 'Vul een geldig telefoonnummer in.',
+            error_message: 'Vul een bericht in van minimaal 10 tekens.',
+            form_success: 'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.',
+            form_button_success: 'Verzonden! ✓',
+            form_submit: 'Bericht versturen'
+        },
+        route: {
+            calculating: 'Route wordt berekend...',
+            routeNotAvailable: 'Route niet beschikbaar. Probeer andere locaties.',
+            unableToCalculate: 'Route berekenen lukt niet.',
+            couldNotFindPrefix: 'Niet gevonden:',
+            eta: '2–5 dagen',
+            fromTo: (from, to) => `Van "${from}" naar "${to}"`
+        },
+        languagePrompt: {
+            question: (name) => `Deze website bekijken in ${name}?`,
+            switch: 'Wisselen',
+            dismiss: 'Niet nu'
+        }
+    },
+    de: {
+        form: {
+            error_name: 'Bitte geben Sie einen gültigen Namen ein.',
+            error_email: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+            error_phone: 'Bitte geben Sie eine gültige Telefonnummer ein.',
+            error_message: 'Bitte geben Sie eine Nachricht mit mindestens 10 Zeichen ein.',
+            form_success: 'Vielen Dank! Wir melden uns so schnell wie möglich.',
+            form_button_success: 'Gesendet! ✓',
+            form_submit: 'Nachricht senden'
+        },
+        route: {
+            calculating: 'Route wird berechnet...',
+            routeNotAvailable: 'Route nicht verfügbar. Bitte andere Orte versuchen.',
+            unableToCalculate: 'Route kann nicht berechnet werden.',
+            couldNotFindPrefix: 'Nicht gefunden:',
+            eta: '2–5 Tage',
+            fromTo: (from, to) => `Von "${from}" nach "${to}"`
+        },
+        languagePrompt: {
+            question: (name) => `Diese Website auf ${name} ansehen?`,
+            switch: 'Wechseln',
+            dismiss: 'Nicht jetzt'
+        }
+    },
+    es: {
+        form: {
+            error_name: 'Introduce un nombre válido.',
+            error_email: 'Introduce un email válido.',
+            error_phone: 'Introduce un teléfono válido.',
+            error_message: 'Escribe un mensaje de al menos 10 caracteres.',
+            form_success: 'Gracias por tu mensaje. Nos pondremos en contacto lo antes posible.',
+            form_button_success: 'Enviado ✓',
+            form_submit: 'Enviar mensaje'
+        },
+        route: {
+            calculating: 'Calculando ruta...',
+            routeNotAvailable: 'Ruta no disponible. Prueba con otras ubicaciones.',
+            unableToCalculate: 'No se pudo calcular la ruta.',
+            couldNotFindPrefix: 'No se encontró:',
+            eta: '2–5 días',
+            fromTo: (from, to) => `De "${from}" a "${to}"`
+        },
+        languagePrompt: {
+            question: (name) => `¿Ver este sitio en ${name}?`,
+            switch: 'Cambiar',
+            dismiss: 'Ahora no'
+        }
+    }
+};
+
+const messages = i18n[pageLang] || i18n.en;
+const formMessages = messages.form;
+const routeMessages = messages.route;
+
 const navbar = document.getElementById('navbar');
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navMenu = document.getElementById('navMenu');
@@ -30,6 +136,84 @@ const routeProgressText = document.getElementById('routeProgressText');
 let routeProgressTimer;
 const heritageMedia = document.querySelector('.heritage-media');
 const gallerySlider = document.querySelector('.gallery-slider');
+
+// === LANGUAGE PREFERENCE (non-intrusive) ===
+const supportedLangs = ['nl', 'en', 'de', 'es'];
+const langToPath = { nl: '/', en: '/en/', de: '/de/', es: '/es/' };
+const langDisplayName = { nl: 'Nederlands', en: 'English', de: 'Deutsch', es: 'Español' };
+
+const isLikelyBot = () => /bot|crawler|spider|crawling|lighthouse/i.test(navigator.userAgent || '');
+
+const getBrowserLang = () => {
+    const candidate = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+    return normalizeLang(candidate);
+};
+
+const preferredLang = (() => {
+    try {
+        return normalizeLang(localStorage.getItem('preferredLang'));
+    } catch (_e) {
+        return null;
+    }
+})();
+
+const setPreferredLang = (lang) => {
+    try {
+        localStorage.setItem('preferredLang', normalizeLang(lang));
+    } catch (_e) {
+        // ignore
+    }
+};
+
+const maybeRedirectToPreferredLang = () => {
+    if (!/^https?:$/.test(window.location.protocol)) return;
+    if (isLikelyBot()) return;
+    if (!preferredLang || !supportedLangs.includes(preferredLang)) return;
+    if (preferredLang === pageLang) return;
+    const target = langToPath[preferredLang];
+    if (!target) return;
+    if (window.location.pathname === target) return;
+    window.location.href = target;
+};
+
+const maybeShowLanguagePrompt = () => {
+    if (!/^https?:$/.test(window.location.protocol)) return;
+    if (isLikelyBot()) return;
+    if (preferredLang) return;
+    const browserLang = getBrowserLang();
+    if (!supportedLangs.includes(browserLang)) return;
+    if (browserLang === pageLang) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'lang-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+
+    const question = document.createElement('p');
+    question.textContent = messages.languagePrompt.question(langDisplayName[browserLang] || browserLang.toUpperCase());
+
+    const actions = document.createElement('div');
+    actions.className = 'lang-banner-actions';
+
+    const switchLink = document.createElement('a');
+    switchLink.href = langToPath[browserLang];
+    switchLink.textContent = messages.languagePrompt.switch;
+    switchLink.addEventListener('click', () => setPreferredLang(browserLang));
+
+    const dismissButton = document.createElement('button');
+    dismissButton.type = 'button';
+    dismissButton.textContent = messages.languagePrompt.dismiss;
+    dismissButton.addEventListener('click', () => {
+        setPreferredLang(pageLang);
+        banner.remove();
+    });
+
+    actions.appendChild(switchLink);
+    actions.appendChild(dismissButton);
+    banner.appendChild(question);
+    banner.appendChild(actions);
+    document.body.appendChild(banner);
+};
 
 const setProgress = (value) => {
     const clamped = Math.max(0, Math.min(100, value));
@@ -63,20 +247,21 @@ const resetProgress = () => {
     setProgress(0);
 };
 
-const formMessages = {
-    error_name: 'Please enter a valid name.',
-    error_email: 'Please enter a valid email address.',
-    error_phone: 'Please enter a valid phone number.',
-    error_message: 'Please enter a message of at least 10 characters.',
-    form_success: 'Thank you for your message! We will contact you as soon as possible.',
-    form_button_success: 'Sent! ✓',
-    form_submit: 'Send message'
-};
-
 // === FOOTER YEAR ===
 if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
 }
+
+// === LANGUAGE INIT ===
+maybeRedirectToPreferredLang();
+maybeShowLanguagePrompt();
+
+document.querySelectorAll('.lang-switch a[data-lang]').forEach((link) => {
+    link.addEventListener('click', () => {
+        const targetLang = link.getAttribute('data-lang');
+        if (targetLang) setPreferredLang(targetLang);
+    });
+});
 
 // === NAVIGATION SCROLL EFFECT ===
 window.addEventListener('scroll', () => {
@@ -203,13 +388,13 @@ const setRouteStatus = (message, isError = false) => {
 const geocodeAddress = async (address) => {
     const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`, {
         headers: {
-            'Accept-Language': 'en',
+            'Accept-Language': pageLang,
             'User-Agent': 'DeliasSneltransport/1.0'
         }
     });
     const data = await response.json();
     if (!data.length) {
-        throw new Error(`Could not find: ${address}`);
+        throw new Error(`${routeMessages.couldNotFindPrefix} ${address}`);
     }
     const { lat, lon, display_name } = data[0];
     return { lat: parseFloat(lat), lon: parseFloat(lon), label: display_name };
@@ -220,7 +405,7 @@ const fetchRoute = async (from, to) => {
     const response = await fetch(url);
     const data = await response.json();
     if (data.code !== 'Ok' || !data.routes || !data.routes.length) {
-        throw new Error('Route not available. Please try different locations.');
+        throw new Error(routeMessages.routeNotAvailable);
     }
     return data.routes[0];
 };
@@ -253,7 +438,7 @@ if (routeForm && routeOriginInput && routeDestinationInput) {
         try {
             const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5`, {
                 headers: {
-                    'Accept-Language': 'en',
+                    'Accept-Language': pageLang,
                     'User-Agent': 'DeliasSneltransport/1.0'
                 }
             });
@@ -275,7 +460,7 @@ if (routeForm && routeOriginInput && routeDestinationInput) {
         const origin = routeOriginInput.value.trim();
         const destination = routeDestinationInput.value.trim();
         if (!origin || !destination) return;
-        setRouteStatus('Calculating route...');
+        setRouteStatus(routeMessages.calculating);
         startProgress();
         routeForm.querySelector('button[type="submit"]').disabled = true;
         try {
@@ -285,14 +470,14 @@ if (routeForm && routeOriginInput && routeDestinationInput) {
             ]);
             const route = await fetchRoute(from, to);
             const distanceKm = (route.distance / 1000).toFixed(1);
-            const durationText = '2-5 days';
+            const durationText = routeMessages.eta;
             if (routeDistanceElement) routeDistanceElement.textContent = `${distanceKm} km`;
             if (routeDurationElement) routeDurationElement.textContent = durationText;
             if (freightTypeElement) freightTypeElement.classList.add('visible');
-            setRouteStatus(`From "${from.label}" to "${to.label}"`);
+            setRouteStatus(routeMessages.fromTo(from.label, to.label));
             finishProgress();
         } catch (error) {
-            setRouteStatus(error.message || 'Unable to calculate route.', true);
+            setRouteStatus(error.message || routeMessages.unableToCalculate, true);
             if (routeDistanceElement) routeDistanceElement.textContent = '—';
             if (routeDurationElement) routeDurationElement.textContent = '—';
             if (freightTypeElement) freightTypeElement.classList.remove('visible');
