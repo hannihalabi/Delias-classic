@@ -13,6 +13,7 @@ const i18n = {
             error_email: 'Please enter a valid email address.',
             error_phone: 'Please enter a valid phone number.',
             error_message: 'Please enter a message of at least 10 characters.',
+            error_submit: 'Something went wrong. Please try again.',
             form_success: 'Thank you for your message! We will contact you as soon as possible.',
             form_button_success: 'Sent! ✓',
             form_submit: 'Send message'
@@ -37,6 +38,7 @@ const i18n = {
             error_email: 'Vul een geldig e-mailadres in.',
             error_phone: 'Vul een geldig telefoonnummer in.',
             error_message: 'Vul een bericht in van minimaal 10 tekens.',
+            error_submit: 'Er ging iets mis. Probeer het opnieuw.',
             form_success: 'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.',
             form_button_success: 'Verzonden! ✓',
             form_submit: 'Bericht versturen'
@@ -61,6 +63,7 @@ const i18n = {
             error_email: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
             error_phone: 'Bitte geben Sie eine gültige Telefonnummer ein.',
             error_message: 'Bitte geben Sie eine Nachricht mit mindestens 10 Zeichen ein.',
+            error_submit: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
             form_success: 'Vielen Dank! Wir melden uns so schnell wie möglich.',
             form_button_success: 'Gesendet! ✓',
             form_submit: 'Nachricht senden'
@@ -85,6 +88,7 @@ const i18n = {
             error_email: 'Introduce un email válido.',
             error_phone: 'Introduce un teléfono válido.',
             error_message: 'Escribe un mensaje de al menos 10 caracteres.',
+            error_submit: 'Algo salió mal. Inténtalo de nuevo.',
             form_success: 'Gracias por tu mensaje. Nos pondremos en contacto lo antes posible.',
             form_button_success: 'Enviado ✓',
             form_submit: 'Enviar mensaje'
@@ -134,12 +138,13 @@ const routeProgress = document.getElementById('routeProgress');
 const routeProgressBar = document.getElementById('routeProgressBar');
 const routeProgressText = document.getElementById('routeProgressText');
 let routeProgressTimer;
+let routeAbortController;
 const heritageMedia = document.querySelector('.heritage-media');
 const gallerySlider = document.querySelector('.gallery-slider');
 
 // === LANGUAGE PREFERENCE (non-intrusive) ===
 const supportedLangs = ['nl', 'en', 'de', 'es'];
-const langToPath = { nl: '/', en: '/en/', de: '/de/', es: '/es/' };
+const langToPath = { nl: '/', en: '/lang/en/', de: '/lang/de/', es: '/lang/es/' };
 const langDisplayName = { nl: 'Nederlands', en: 'English', de: 'Deutsch', es: 'Español' };
 
 const isLikelyBot = () => /bot|crawler|spider|crawling|lighthouse/i.test(navigator.userAgent || '');
@@ -260,6 +265,23 @@ document.querySelectorAll('.lang-switch a[data-lang]').forEach((link) => {
     link.addEventListener('click', () => {
         const targetLang = link.getAttribute('data-lang');
         if (targetLang) setPreferredLang(targetLang);
+    });
+});
+
+document.querySelectorAll('.lang-switch').forEach((switcher) => {
+    const trigger = switcher.querySelector('.lang-trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        const isOpen = switcher.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (switcher.contains(event.target)) return;
+        switcher.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
     });
 });
 
@@ -385,13 +407,17 @@ const setRouteStatus = (message, isError = false) => {
     }
 };
 
-const geocodeAddress = async (address) => {
+const geocodeAddress = async (address, signal) => {
     const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`, {
         headers: {
             'Accept-Language': pageLang,
             'User-Agent': 'DeliasSneltransport/1.0'
-        }
+        },
+        signal
     });
+    if (!response.ok) {
+        throw new Error(routeMessages.unableToCalculate);
+    }
     const data = await response.json();
     if (!data.length) {
         throw new Error(`${routeMessages.couldNotFindPrefix} ${address}`);
@@ -400,9 +426,12 @@ const geocodeAddress = async (address) => {
     return { lat: parseFloat(lat), lon: parseFloat(lon), label: display_name };
 };
 
-const fetchRoute = async (from, to) => {
+const fetchRoute = async (from, to, signal) => {
     const url = `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=full&geometries=geojson`;
-    const response = await fetch(url);
+    const response = await fetch(url, { signal });
+    if (!response.ok) {
+        throw new Error(routeMessages.routeNotAvailable);
+    }
     const data = await response.json();
     if (data.code !== 'Ok' || !data.routes || !data.routes.length) {
         throw new Error(routeMessages.routeNotAvailable);
@@ -457,6 +486,11 @@ if (routeForm && routeOriginInput && routeDestinationInput) {
 
     routeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (routeAbortController) {
+            routeAbortController.abort();
+        }
+        routeAbortController = new AbortController();
+
         const origin = routeOriginInput.value.trim();
         const destination = routeDestinationInput.value.trim();
         if (!origin || !destination) return;
@@ -465,10 +499,10 @@ if (routeForm && routeOriginInput && routeDestinationInput) {
         routeForm.querySelector('button[type="submit"]').disabled = true;
         try {
             const [from, to] = await Promise.all([
-                geocodeAddress(origin),
-                geocodeAddress(destination)
+                geocodeAddress(origin, routeAbortController.signal),
+                geocodeAddress(destination, routeAbortController.signal)
             ]);
-            const route = await fetchRoute(from, to);
+            const route = await fetchRoute(from, to, routeAbortController.signal);
             const distanceKm = (route.distance / 1000).toFixed(1);
             const durationText = routeMessages.eta;
             if (routeDistanceElement) routeDistanceElement.textContent = `${distanceKm} km`;
@@ -477,6 +511,10 @@ if (routeForm && routeOriginInput && routeDestinationInput) {
             setRouteStatus(routeMessages.fromTo(from.label, to.label));
             finishProgress();
         } catch (error) {
+            if (error.name === 'AbortError') {
+                resetProgress();
+                return;
+            }
             setRouteStatus(error.message || routeMessages.unableToCalculate, true);
             if (routeDistanceElement) routeDistanceElement.textContent = '—';
             if (routeDurationElement) routeDurationElement.textContent = '—';
@@ -569,6 +607,7 @@ if (contactForm) {
         const email = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
         const message = document.getElementById('message').value.trim();
+        const formStatus = contactForm.querySelector('.form-status');
 
         const errors = [];
         if (name.length < 2) errors.push(formMessages.error_name);
@@ -581,17 +620,44 @@ if (contactForm) {
             return;
         }
 
-        alert(formMessages.form_success);
-        contactForm.reset();
-
+        if (formStatus) formStatus.textContent = '';
         if (contactFormSubmitButton) {
             contactFormSubmitButton.textContent = formMessages.form_button_success;
             contactFormSubmitButton.style.background = 'linear-gradient(135deg, #4ECDC4, #44B3AA)';
-            setTimeout(() => {
-                contactFormSubmitButton.textContent = formMessages.form_submit;
-                contactFormSubmitButton.style.background = '';
-            }, 3000);
+            contactFormSubmitButton.disabled = true;
         }
+
+        const formData = new FormData(contactForm);
+        const submitUrl = contactForm.getAttribute('action');
+
+        fetch(submitUrl, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json'
+            },
+            body: formData
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Submission failed');
+                }
+                if (formStatus) formStatus.textContent = formMessages.form_success;
+                contactForm.reset();
+            })
+            .catch(() => {
+                if (formStatus) {
+                    formStatus.textContent = formMessages.error_submit;
+                }
+            })
+            .finally(() => {
+                if (contactFormSubmitButton) {
+                    contactFormSubmitButton.disabled = false;
+                    setTimeout(() => {
+                        contactFormSubmitButton.textContent = formMessages.form_submit;
+                        contactFormSubmitButton.style.background = '';
+                    }, 2000);
+                }
+            });
     });
 }
 

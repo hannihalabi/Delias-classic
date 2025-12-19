@@ -11,9 +11,9 @@
     <meta name="theme-color" content="#0A0E27">
 
     <link rel="alternate" hreflang="nl" href="https://deliassneltransports.nl/">
-    <link rel="alternate" hreflang="en" href="https://deliassneltransports.nl/en/">
-    <link rel="alternate" hreflang="de" href="https://deliassneltransports.nl/de/">
-    <link rel="alternate" hreflang="es" href="https://deliassneltransports.nl/es/">
+    <link rel="alternate" hreflang="en" href="https://deliassneltransports.nl/lang/en/">
+    <link rel="alternate" hreflang="de" href="https://deliassneltransports.nl/lang/de/">
+    <link rel="alternate" hreflang="es" href="https://deliassneltransports.nl/lang/es/">
     <link rel="alternate" hreflang="x-default" href="https://deliassneltransports.nl/">
 
     <meta property="og:type" content="website">
@@ -165,7 +165,7 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <img src="/logo.webp" alt="Delias Sneltransport">
+                    <a href="/"><img src="/pics/logo.webp" alt="Delias Sneltransport"></a>
                 </div>
 
                 <!-- Mobile Menu Toggle -->
@@ -188,17 +188,20 @@
                 </div>
 
                 <div class="lang-switch" aria-label="Taal">
-                    <a class="active" href="/" hreflang="nl" lang="nl" data-lang="nl">NL</a>
-                    <a href="/en/" hreflang="en" lang="en" data-lang="en">EN</a>
-                    <a href="/de/" hreflang="de" lang="de" data-lang="de">DE</a>
-                    <a href="/es/" hreflang="es" lang="es" data-lang="es">ES</a>
+                    <button class="lang-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Kies taal">🇳🇱</button>
+                    <div class="lang-list" role="menu" aria-label="Taal">
+                        <a class="active" href="/" hreflang="nl" lang="nl" data-lang="nl" aria-label="Nederlands" role="menuitem">🇳🇱</a>
+                        <a href="/lang/en/" hreflang="en" lang="en" data-lang="en" aria-label="English" role="menuitem">🇬🇧</a>
+                        <a href="/lang/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" role="menuitem">🇪🇸</a>
+                        <a href="/lang/de/" hreflang="de" lang="de" data-lang="de" aria-label="Deutsch" role="menuitem">🇩🇪</a>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
     <div class="menu-overlay" id="menuOverlay"></div>
     <a href="https://wa.me/31616097005" class="mobile-whatsapp-cta" aria-label="WhatsApp Delias Sneltransport" target="_blank" rel="noopener">
-        <img src="/WhatsApp-logo.webp" alt="WhatsApp" loading="lazy">
+        <img src="/pics/whatsapp.jpg" alt="WhatsApp" loading="lazy">
     </a>
     <a href="tel:0616097005" class="mobile-phone-cta" aria-label="Ring Delias Sneltransport">📞</a>
 
@@ -206,11 +209,9 @@
     <section class="hero" id="home">
         <!-- Background Video -->
         <video class="hero-video" autoplay muted playsinline preload="metadata" poster="/bil-delias.webp" id="heroVideo">
-            <source src="/AI-videos/Snow-car.mp4" type="video/mp4">
-            <source src="/video-trucks.mp4" type="video/mp4">
-            <source src="/plane-lifting.mp4" type="video/mp4">
-            <source src="/hamn-logistik.mp4" type="video/mp4">
-            <source src="/plane.mp4" type="video/mp4">
+            <source src="/vid/video-trucks.mp4" type="video/mp4">
+            <source src="/vid/Snow-car.mp4" type="video/mp4">
+            <source src="/vid/plane-lifting.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -218,7 +219,7 @@
             <div class="hero-content">
                 <h1 class="hero-title">Internationale koerier uit Nederland</h1>
                 <div class="hero-lottie">
-                    <dotlottie-wc src="https://lottie.host/7b17cdf5-67cc-474d-88b2-62adaae2bfcf/DpAHIAqGLb.lottie" style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
+                    <dotlottie-wc src="/lottie/WorldShipment.lottie" style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
                 </div>
                 <p class="hero-tagline">Van deur tot deur door heel Europa sinds 1989</p>
                 <a href="#contact" class="cta-button">Offerte aanvragen</a>
@@ -234,8 +235,8 @@
                     <span class="heritage-badge">Sinds 1989 onderweg</span>
                     <h2 class="heritage-title">Organische groei dankzij tevreden klanten</h2>
                     <p class="heritage-copy">Van onze eerste ritten in 1989 tot de routes van vandaag door heel Europa: onze groei komt voort uit klanten die ons aanbevelen na een opdracht die goed is uitgevoerd.</p>
-                    <div class="heritage-media lottie-only">
-                        <dotlottie-wc src="https://lottie.host/a6f2e90d-b0b3-49d2-8979-c28c2795f84b/0bOw2sC3gg.lottie" style="width: 100%; height: 100%" autoplay loop speed="1.4"></dotlottie-wc>
+                    <div class="heritage-media">
+                        <video src="/vid/Map.mp4.mp4" class="heritage-map" autoplay muted loop playsinline preload="metadata" aria-label="Kaart met huidige routes"></video>
                     </div>
                     <div class="heritage-metrics">
                         <div class="heritage-metric">
@@ -266,25 +267,28 @@
                 <div class="service-card glass">
                     <h3>Zeevracht</h3>
                     <div class="service-lottie">
-                        <dotlottie-wc src="https://lottie.host/6f97f0a0-3e5e-411e-944b-fe7b1b4a0fef/pmsWzBVjtt.lottie" style="width: 180px; height: 180px; background: transparent" autoplay loop></dotlottie-wc>
+                        <dotlottie-wc src="/lottie/Ship.lottie" style="width: 180px; height: 180px; background: transparent" autoplay loop></dotlottie-wc>
                     </div>
                     <p>Full-container en groupage zeevracht met douanedocumentatie en betrouwbare transittijden.</p>
+                    <a class="cta-button" style="margin-top:16px; padding:12px 20px; font-size:14px;" href="/zeevracht.html">Meer over zeevracht</a>
                 </div>
 
                 <div class="service-card glass">
                     <h3>Luchtvracht</h3>
                     <div class="service-lottie">
-                        <dotlottie-wc src="https://lottie.host/3d3f8060-523e-4eec-9967-114df187b239/FbbCNYjvfz.lottie" style="width: 180px; height: 180px; background: transparent" autoplay loop></dotlottie-wc>
+                        <dotlottie-wc src="/lottie/AirDelivery.lottie" style="width: 180px; height: 180px; background: transparent" autoplay loop></dotlottie-wc>
                     </div>
                     <p>Prioritaire luchtvracht voor spoedzendingen, met updates van vertrek tot levering (airport-to-door waar mogelijk).</p>
+                    <a class="cta-button" style="margin-top:16px; padding:12px 20px; font-size:14px;" href="/luchtvracht.html">Meer over luchtvracht</a>
                 </div>
 
                 <div class="service-card glass">
                     <h3>Wegtransport</h3>
                     <div class="service-lottie">
-                        <dotlottie-wc src="/Loading_car.lottie" style="width: 180px; height: 180px; background: transparent" autoplay loop aria-label="Wegtransport animatie"></dotlottie-wc>
+                        <dotlottie-wc src="/lottie/truckload.lottie" style="width: 180px; height: 180px; background: transparent" autoplay loop aria-label="Wegtransport animatie"></dotlottie-wc>
                     </div>
                     <p>Transport door Europa voor deel- en compleetladingen, vaste ritten en express dedicated voertuigen.</p>
+                    <a class="cta-button" style="margin-top:16px; padding:12px 20px; font-size:14px;" href="/wegtransport.html">Meer over wegtransport</a>
                 </div>
 
             </div>
@@ -299,25 +303,15 @@
             <div class="gallery-slider glass">
                 <button class="gallery-control prev" type="button" aria-label="Previous image">&#8249;</button>
                 <div class="gallery-slides">
-                    <img src="/truck2.png" alt="Vrachtwagen bij de haven" class="gallery-slide active" loading="lazy">
-                    <img src="/bil-delias.webp" alt="Delias voertuig" class="gallery-slide" loading="lazy">
-                    <img src="/Cars-1x1.png" alt="Voertuigen op locatie" class="gallery-slide" loading="lazy">
+                    <img src="/pics/truck2.png" alt="Vrachtwagen bij de haven" class="gallery-slide active" loading="lazy">
+                    <img src="/pics/Cars-Boat.png" alt="Auto en boot op transport" class="gallery-slide" loading="lazy">
+                    <img src="/pics/logo-iveco1.jpeg" alt="Delias voertuig" class="gallery-slide" loading="lazy">
+                    <img src="/pics/Cars-1x1.png" alt="Voertuigen op locatie" class="gallery-slide" loading="lazy">
+                    <img src="/pics/logo-sprinter2.jpeg" alt="Sprinterbus van Delias Sneltransport" class="gallery-slide" loading="lazy">
+                    <img src="/pics/logo-truck.png" alt="Delias vrachtwagen" class="gallery-slide" loading="lazy">
+                    <img src="/pics/logo-sprinter3.jpeg" alt="Sprinterbus onderweg" class="gallery-slide" loading="lazy">
                 </div>
                 <button class="gallery-control next" type="button" aria-label="Next image">&#8250;</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Routes Section -->
-    <section class="routes" id="routes">
-        <div class="container">
-            <h2 class="section-title">Voorbeeld van onze huidige routes</h2>
-            <div class="routes-video glass">
-                <video id="routesVideo" playsinline preload="metadata" muted loop>
-                    <source src="/Map.mov" type="video/quicktime">
-                    <source src="/Map.mov" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
             </div>
         </div>
     </section>
@@ -326,7 +320,7 @@
     <section class="route-planner" id="route-planner">
         <div class="container">
             <div class="route-grid glass">
-                <div class="route-form-wrapper">
+                <div class="route-pane route-form-wrapper">
                     <h2 class="section-title">Bestemmingscalculator</h2>
                     <p class="section-subtitle">Bereken afstand en geschatte rijtijd tussen twee adressen</p>
                     <form id="routeForm" class="route-form">
@@ -361,9 +355,32 @@
                         <div class="freight-type" id="freightType">
                             <h3>Vrachttype</h3>
                             <div class="freight-type-icons">
-                                <img src="/seafreight.png" alt="Zeevracht" width="48" height="48" loading="lazy">
-                                <img src="/truck-freight.png" alt="Wegtransport" width="48" height="48" loading="lazy">
+                                <img src="/pics/seafreight.png" alt="Zeevracht" width="48" height="48" loading="lazy">
+                                <img src="/pics/truck-freight.png" alt="Wegtransport" width="48" height="48" loading="lazy">
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="route-pane route-contact-card">
+                    <h3>Contactgegevens</h3>
+                    <div class="route-contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <div>
+                            <h4>Telefoon</h4>
+                            <a href="tel:0616097005">+31 6 16097005</a>
+                            <p>Maandag t/m vrijdag bereikbaar tot 17:00</p>
+                        </div>
+                    </div>
+                    <div class="route-contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <div>
+                            <h4>Openingstijden</h4>
+                            <p>Maandag - vrijdag<br>09:00 - 17:00</p>
                         </div>
                     </div>
                 </div>
@@ -378,8 +395,7 @@
                 <div class="about-text">
                     <h2 class="section-title">Over ons</h2>
                     <div class="lottie-wrapper about-lottie">
-                        <dotlottie-wc src="https://lottie.host/766347f7-a84a-4154-9e80-d4eb8848e28a/llHSPizzbQ.lottie"
-                            style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
+                        <dotlottie-wc src="/lottie/Loading_car.lottie" style="width: 300px; height: 300px" autoplay loop></dotlottie-wc>
                     </div>
                     <div class="about-grid">
                         <div class="about-item">
@@ -422,6 +438,7 @@
                     </div>
                     <h3>Small shipments</h3>
                     <p>Voor kleine zendingen bieden we flexibele opties, inclusief spoedkoerier en extra zorg voor kwetsbare goederen.</p>
+                    <a class="cta-button" style="margin-top:16px; padding:12px 20px; font-size:14px;" href="/spoedtransport.html">Lees meer</a>
                 </div>
 
                 <!-- Service 2 -->
@@ -491,7 +508,10 @@
             <p class="section-subtitle">Vraag een vrijblijvende offerte aan</p>
 
             <div class="contact-wrapper">
-                <form class="contact-form glass" id="contactForm">
+                <form class="contact-form glass" id="contactForm" action="https://formsubmit.co/hanni.halabi@icloud.com" method="POST">
+                    <input type="hidden" name="_subject" value="Website contact form">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_bcc" value="info@deliassneltransport.nl">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Naam *</label>
@@ -512,13 +532,16 @@
 
                         <div class="form-group">
                             <label for="service">Dienst</label>
-                            <select id="service" name="service">
-                                <option value="">Kies een dienst</option>
-                                <option value="verhuizing">Internationale verhuizing</option>
-                                <option value="vracht">Kleine zending</option>
-                                <option value="koerier">Koeriersdienst</option>
-                                <option value="speciaal">Speciaal transport</option>
-                            </select>
+                            <div class="service-options" id="service">
+                                <input type="radio" id="service-moving" name="service" value="verhuizing">
+                                <label class="service-option" for="service-moving">Internationale verhuizing</label>
+                                <input type="radio" id="service-freight" name="service" value="vracht">
+                                <label class="service-option" for="service-freight">Kleine zending</label>
+                                <input type="radio" id="service-courier" name="service" value="koerier">
+                                <label class="service-option" for="service-courier">Koeriersdienst</label>
+                                <input type="radio" id="service-special" name="service" value="speciaal">
+                                <label class="service-option" for="service-special">Speciaal transport</label>
+                            </div>
                         </div>
                     </div>
 
@@ -527,6 +550,7 @@
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
 
+                    <div class="form-status" role="status" aria-live="polite"></div>
                     <button type="submit" class="cta-button">Bericht versturen</button>
                 </form>
 

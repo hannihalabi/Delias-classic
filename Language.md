@@ -1,0 +1,6 @@
+Today the site ships only nl, en, de, es, with hreflang/canonical set for those. Users on unsupported locales (e.g., fr, it, pl) stay on whatever URL they hit; no auto-redirect or translated content exists.
+To be “visible” in all European languages, you’d need translated versions (pages + hreflang + content). Without actual translations, adding hreflang or language detection alone won’t help—Google and users still see only the four languages.
+SEO impact: adding real translated pages can expand reach and rankings in those languages. Each new language should have its own URL path (e.g., /fr/), localized content/meta, and hreflang entries across all versions to avoid duplication and target the right locales. Canonicals stay self-referential per language.
+If you only want to show a language prompt or auto-redirect based on browser language for more locales, you can extend the supported language list and add URL paths, but without translated content it won’t improve SEO and could harm UX if you land people on non-localized pages.
+Recommendation: decide which languages matter (e.g., fr, it, pl, sv, da, no, fi, pt), get proper translations, create per-language folders with localized HTML, update hreflang/sitemap, and extend the JS language map. That’s the path that benefits both users and SEO.
+
