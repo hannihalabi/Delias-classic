@@ -21,16 +21,16 @@
     <meta property="og:url" content="https://deliassneltransports.nl/lang/en/">
     <meta property="og:title" content="International Courier Netherlands | Delias Sneltransport">
     <meta property="og:description" content="Express delivery and Europe-wide transport from the Netherlands. Operating since 1989. Request a free quote.">
-    <meta property="og:image" content="https://deliassneltransports.nl/logo.webp">
+    <meta property="og:image" content="https://deliassneltransports.nl/pics/logo.webp">
     <meta property="og:locale" content="en_US">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="International Courier Netherlands | Delias Sneltransport">
     <meta name="twitter:description" content="Express delivery and Europe-wide transport from the Netherlands. Operating since 1989. Request a free quote.">
-    <meta name="twitter:image" content="https://deliassneltransports.nl/logo.webp">
+    <meta name="twitter:image" content="https://deliassneltransports.nl/pics/logo.webp">
 
-    <link rel="icon" href="/logo.webp" type="image/webp">
-    <link rel="apple-touch-icon" href="/logo.webp">
+    <link rel="icon" href="/pics/logo.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="/pics/logo.webp">
 
     <!-- Google tag (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TLBCZT3RGX"></script>
@@ -41,18 +41,12 @@
         gtag('config', 'G-TLBCZT3RGX');
     </script>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preload" href="/fonts/fonts.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/fonts/fonts.css"></noscript>
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/styles.css">
-
-    <!-- Lottie Animation -->
-    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
 
     <script type="application/ld+json">
         {
@@ -63,7 +57,7 @@
                     "@id": "https://deliassneltransports.nl/#org",
                     "name": "Delias Sneltransport",
                     "url": "https://deliassneltransports.nl/",
-                    "logo": "https://deliassneltransports.nl/logo.webp",
+                    "logo": "https://deliassneltransports.nl/pics/logo.webp",
                     "telephone": "+31 6 16097005",
                     "contactPoint": [
                         {
@@ -165,7 +159,7 @@
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
-                    <a href="/lang/en/"><img src="/pics/logo.webp" alt="Delias Sneltransport"></a>
+                    <a href="/lang/en/"><img src="/pics/logo-130.webp" srcset="/pics/logo-130.webp 130w, /pics/logo-260.webp 260w" sizes="130px" width="130" height="42" alt="Delias Sneltransport"></a>
                 </div>
 
                 <!-- Mobile Menu Toggle -->
@@ -188,12 +182,12 @@
                 </div>
 
                 <div class="lang-switch" aria-label="Taal">
-                    <button class="lang-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Kies taal">🇳🇱</button>
-                    <div class="lang-list" role="menu" aria-label="Taal">
-                        <a href="/" hreflang="nl" lang="nl" data-lang="nl" aria-label="Nederlands" role="menuitem">🇳🇱</a>
-                        <a class="active" href="/lang/en/" hreflang="en" lang="en" data-lang="en" aria-label="English" role="menuitem">🇬🇧</a>
-                        <a href="/lang/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español" role="menuitem">🇪🇸</a>
-                        <a href="/lang/de/" hreflang="de" lang="de" data-lang="de" aria-label="Deutsch" role="menuitem">🇩🇪</a>
+                    <button class="lang-trigger" type="button" aria-expanded="false" aria-controls="langList" aria-label="Kies taal">🇳🇱</button>
+                    <div class="lang-list" id="langList" aria-label="Taal">
+                        <a href="/" hreflang="nl" lang="nl" data-lang="nl" aria-label="Nederlands">🇳🇱</a>
+                        <a class="active" href="/lang/en/" hreflang="en" lang="en" data-lang="en" aria-label="English">🇬🇧</a>
+                        <a href="/lang/es/" hreflang="es" lang="es" data-lang="es" aria-label="Español">🇪🇸</a>
+                        <a href="/lang/de/" hreflang="de" lang="de" data-lang="de" aria-label="Deutsch">🇩🇪</a>
                     </div>
                 </div>
             </div>
@@ -205,13 +199,15 @@
     </a>
     <a href="tel:0616097005" class="mobile-phone-cta" aria-label="Ring Delias Sneltransport">📞</a>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
         <!-- Background Video -->
         <video class="hero-video" autoplay muted playsinline preload="none" data-lazy-video="true" id="heroVideo">
             <source data-src="/vid/video-trucks.mp4" type="video/mp4">
             <source data-src="/vid/Snow-car.mp4" type="video/mp4">
             <source data-src="/vid/plane-lifting.mp4" type="video/mp4">
+            <track kind="captions" src="/captions/hero-en.vtt" srclang="en" label="English" default>
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -591,6 +587,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="footer">

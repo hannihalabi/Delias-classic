@@ -141,6 +141,39 @@ let routeProgressTimer;
 let routeAbortController;
 const heritageMedia = document.querySelector('.heritage-media');
 const gallerySlider = document.querySelector('.gallery-slider');
+const dotLottieElements = document.querySelectorAll('dotlottie-wc');
+
+const loadDotLottie = () => {
+    if (window.customElements && customElements.get('dotlottie-wc')) return;
+    if (document.querySelector('script[data-dotlottie]')) return;
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js';
+    script.setAttribute('data-dotlottie', 'true');
+    document.head.appendChild(script);
+};
+
+const scheduleDotLottieLoad = () => {
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadDotLottie, { timeout: 2000 });
+    } else {
+        setTimeout(loadDotLottie, 1500);
+    }
+};
+
+if (dotLottieElements.length) {
+    if ('IntersectionObserver' in window) {
+        const lottieObserver = new IntersectionObserver((entries, observer) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+                scheduleDotLottieLoad();
+                observer.disconnect();
+            }
+        }, { rootMargin: '200px' });
+        dotLottieElements.forEach((element) => lottieObserver.observe(element));
+    } else {
+        scheduleDotLottieLoad();
+    }
+}
 
 // === LANGUAGE PREFERENCE (non-intrusive) ===
 const supportedLangs = ['nl', 'en', 'de', 'es'];
@@ -395,19 +428,23 @@ const loadLazyVideo = (video) => {
 // === LAZY VIDEO LOAD ===
 const lazyVideos = document.querySelectorAll('video[data-lazy-video]');
 if (lazyVideos.length) {
-    const lazyObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const video = entry.target;
-            loadLazyVideo(video);
-            if (video.autoplay) {
-                video.play().catch(() => {});
-            }
-            observer.unobserve(video);
-        });
-    }, { threshold: 0.2 });
+    if ('IntersectionObserver' in window) {
+        const lazyObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const video = entry.target;
+                loadLazyVideo(video);
+                if (video.autoplay) {
+                    video.play().catch(() => {});
+                }
+                observer.unobserve(video);
+            });
+        }, { threshold: 0.2 });
 
-    lazyVideos.forEach((video) => lazyObserver.observe(video));
+        lazyVideos.forEach((video) => lazyObserver.observe(video));
+    } else {
+        lazyVideos.forEach((video) => loadLazyVideo(video));
+    }
 }
 
 // === ROUTES VIDEO AUTOPLAY ON VIEW ===
