@@ -375,6 +375,38 @@ if (gallerySlider) {
     if (nextGallery) nextGallery.addEventListener('click', () => moveGallery(1));
 }
 
+// === LAZY VIDEO LOAD ===
+const lazyVideos = document.querySelectorAll('video[data-lazy-video]');
+if (lazyVideos.length) {
+    const loadLazyVideo = (video) => {
+        if (video.dataset.loaded) return;
+        const src = video.getAttribute('data-src');
+        if (src) {
+            video.src = src;
+        }
+        const sources = video.querySelectorAll('source[data-src]');
+        sources.forEach((source) => {
+            source.src = source.getAttribute('data-src');
+        });
+        video.load();
+        video.dataset.loaded = 'true';
+    };
+
+    const lazyObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const video = entry.target;
+            loadLazyVideo(video);
+            if (video.autoplay) {
+                video.play().catch(() => {});
+            }
+            observer.unobserve(video);
+        });
+    }, { threshold: 0.2 });
+
+    lazyVideos.forEach((video) => lazyObserver.observe(video));
+}
+
 // === ROUTES VIDEO AUTOPLAY ON VIEW ===
 if (routesVideo) {
     const observer = new IntersectionObserver((entries) => {
