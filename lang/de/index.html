@@ -208,10 +208,10 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <!-- Background Video -->
-        <video class="hero-video" autoplay muted playsinline preload="metadata" poster="/bil-delias.webp" id="heroVideo">
-            <source src="/vid/video-trucks.mp4" type="video/mp4">
-            <source src="/vid/Snow-car.mp4" type="video/mp4">
-            <source src="/vid/plane-lifting.mp4" type="video/mp4">
+        <video class="hero-video" autoplay muted playsinline preload="none" data-lazy-video="true" id="heroVideo">
+            <source data-src="/vid/video-trucks.mp4" type="video/mp4">
+            <source data-src="/vid/Snow-car.mp4" type="video/mp4">
+            <source data-src="/vid/plane-lifting.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -236,7 +236,7 @@
                     <h2 class="heritage-title">Wachstum durch zufriedene Kunden</h2>
                     <p class="heritage-copy">Von den ersten Fahrten 1989 bis zu heutigen Europa-Routen: Unsere Weiterempfehlungen sind unser stärkster Wachstumsmotor.</p>
                     <div class="heritage-media">
-                        <video src="/vid/Map.mp4.mp4" class="heritage-map" autoplay muted loop playsinline preload="metadata" aria-label="Kaart met huidige routes"></video>
+                        <video data-src="/vid/Map.mp4.mp4" class="heritage-map" autoplay muted loop playsinline preload="none" data-lazy-video="true" aria-label="Kaart met huidige routes"></video>
                     </div>
                     <div class="heritage-metrics">
                         <div class="heritage-metric">
@@ -300,14 +300,34 @@
             <div class="gallery-slider glass">
                 <button class="gallery-control prev" type="button" aria-label="Previous image">&#8249;</button>
                 <div class="gallery-slides">
-
-                    <img src="/pics/truck2.png" alt="Lkw im Hafen" class="gallery-slide active" loading="lazy">
-                    <img src="/pics/Cars-Boat.png" alt="Auto und Boot im Transport" class="gallery-slide" loading="lazy">
-                    <img src="/pics/logo-iveco1.jpeg" alt="Delias Fahrzeug" class="gallery-slide" loading="lazy">
-                    <img src="/pics/Cars-1x1.png" alt="Fahrzeuge am Einsatzort" class="gallery-slide" loading="lazy">
-                    <img src="/pics/logo-sprinter2.jpeg" alt="Delias Sprinterbus" class="gallery-slide" loading="lazy">
-                    <img src="/pics/logo-truck.png" alt="Delias Lkw" class="gallery-slide" loading="lazy">
-                    <img src="/pics/logo-sprinter3.jpeg" alt="Sprinterbus unterwegs" class="gallery-slide" loading="lazy">
+                    <picture class="gallery-slide active">
+                        <source type="image/webp" srcset="/pics/truck2-480.webp 480w, /pics/truck2-900.webp 900w, /pics/truck2-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/truck2.png" alt="Lkw im Hafen" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
+                    <picture class="gallery-slide">
+                        <source type="image/webp" srcset="/pics/Cars-Boat-480.webp 480w, /pics/Cars-Boat-900.webp 900w, /pics/Cars-Boat-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/Cars-Boat.png" alt="Auto und Boot im Transport" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
+                    <picture class="gallery-slide">
+                        <source type="image/webp" srcset="/pics/logo-iveco1-480.webp 480w, /pics/logo-iveco1-900.webp 900w, /pics/logo-iveco1-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/logo-iveco1.jpeg" alt="Delias Fahrzeug" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
+                    <picture class="gallery-slide">
+                        <source type="image/webp" srcset="/pics/Cars-1x1-480.webp 480w, /pics/Cars-1x1-900.webp 900w, /pics/Cars-1x1-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/Cars-1x1.png" alt="Fahrzeuge am Einsatzort" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
+                    <picture class="gallery-slide">
+                        <source type="image/webp" srcset="/pics/logo-sprinter2-480.webp 480w, /pics/logo-sprinter2-900.webp 900w, /pics/logo-sprinter2-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/logo-sprinter2.jpeg" alt="Delias Sprinterbus" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
+                    <picture class="gallery-slide">
+                        <source type="image/webp" srcset="/pics/logo-truck-480.webp 480w, /pics/logo-truck-900.webp 900w, /pics/logo-truck-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/logo-truck.png" alt="Delias Lkw" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
+                    <picture class="gallery-slide">
+                        <source type="image/webp" srcset="/pics/logo-sprinter3-480.webp 480w, /pics/logo-sprinter3-900.webp 900w, /pics/logo-sprinter3-1200.webp 1200w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                        <img src="/pics/logo-sprinter3.jpeg" alt="Sprinterbus unterwegs" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px">
+                    </picture>
                 </div>
                 <button class="gallery-control next" type="button" aria-label="Next image">&#8250;</button>
             </div>
@@ -319,9 +339,9 @@
         <div class="container">
             <h2 class="section-title">Beispiel unserer aktuellen Routen</h2>
             <div class="routes-video glass">
-                <video id="routesVideo" playsinline preload="metadata" muted loop>
-                    <source src="/vid/Map.mp4.mp4" type="video/quicktime">
-                    <source src="/vid/Map.mp4.mp4" type="video/mp4">
+                <video id="routesVideo" playsinline preload="none" muted loop data-lazy-video="true">
+                    <source data-src="/vid/Map.mp4.mp4" type="video/quicktime">
+                    <source data-src="/vid/Map.mp4.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>

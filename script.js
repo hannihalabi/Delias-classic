@@ -294,10 +294,13 @@ window.addEventListener('scroll', () => {
 
 // === HERO VIDEO CYCLING ===
 if (heroVideo && heroSources.length > 1) {
+    const getHeroSourceUrl = (source) => source.getAttribute('src') || source.getAttribute('data-src');
     let currentVideoIndex = 0;
     heroVideo.addEventListener('ended', () => {
         currentVideoIndex = (currentVideoIndex + 1) % heroSources.length;
-        heroVideo.src = heroSources[currentVideoIndex].getAttribute('src');
+        const nextSource = getHeroSourceUrl(heroSources[currentVideoIndex]);
+        if (!nextSource) return;
+        heroVideo.src = nextSource;
         heroVideo.load();
         heroVideo.play();
     });
@@ -375,23 +378,23 @@ if (gallerySlider) {
     if (nextGallery) nextGallery.addEventListener('click', () => moveGallery(1));
 }
 
+const loadLazyVideo = (video) => {
+    if (!video || video.dataset.loaded) return;
+    const src = video.getAttribute('data-src');
+    if (src) {
+        video.src = src;
+    }
+    const sources = video.querySelectorAll('source[data-src]');
+    sources.forEach((source) => {
+        source.src = source.getAttribute('data-src');
+    });
+    video.load();
+    video.dataset.loaded = 'true';
+};
+
 // === LAZY VIDEO LOAD ===
 const lazyVideos = document.querySelectorAll('video[data-lazy-video]');
 if (lazyVideos.length) {
-    const loadLazyVideo = (video) => {
-        if (video.dataset.loaded) return;
-        const src = video.getAttribute('data-src');
-        if (src) {
-            video.src = src;
-        }
-        const sources = video.querySelectorAll('source[data-src]');
-        sources.forEach((source) => {
-            source.src = source.getAttribute('data-src');
-        });
-        video.load();
-        video.dataset.loaded = 'true';
-    };
-
     const lazyObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
@@ -412,6 +415,7 @@ if (routesVideo) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                loadLazyVideo(routesVideo);
                 routesVideo.play().catch(() => {});
             } else {
                 routesVideo.pause();
