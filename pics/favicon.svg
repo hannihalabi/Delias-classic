@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Delias Sneltransport favicon">
+  <defs>
+    <linearGradient id="deliGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF8C5F" />
+      <stop offset="100%" stop-color="#FF6B35" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#0A0E27" />
+  <path fill="url(#deliGradient)" fill-rule="evenodd" d="M176 96 L176 416 H300 C372 416 416 362 416 256 C416 150 372 96 300 96 Z M232 152 L232 360 H292 C336 360 360 322 360 256 C360 190 336 152 292 152 Z" />
+</svg>
