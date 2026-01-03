@@ -3,7 +3,8 @@
 // Core interactions (menu, video, form)
 // ===================================
 
-const normalizeLang = (lang) => (lang || 'en').toLowerCase().split('-')[0];
+const defaultLang = 'nl';
+const normalizeLang = (lang) => (lang || defaultLang).toLowerCase().split('-')[0];
 const pageLang = normalizeLang(document.documentElement.lang);
 
 const i18n = {
@@ -177,13 +178,14 @@ if (dotLottieElements.length) {
 
 // === LANGUAGE PREFERENCE (non-intrusive) ===
 const supportedLangs = ['nl', 'en', 'de', 'es'];
+const enableLanguagePrompt = false;
 const langToPath = { nl: '/', en: '/lang/en/', de: '/lang/de/', es: '/lang/es/' };
 const langDisplayName = { nl: 'Nederlands', en: 'English', de: 'Deutsch', es: 'Español' };
 
 const isLikelyBot = () => /bot|crawler|spider|crawling|lighthouse/i.test(navigator.userAgent || '');
 
 const getBrowserLang = () => {
-    const candidate = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+    const candidate = (navigator.languages && navigator.languages[0]) || navigator.language || defaultLang;
     return normalizeLang(candidate);
 };
 
@@ -292,7 +294,7 @@ if (currentYearElement) {
 
 // === LANGUAGE INIT ===
 maybeRedirectToPreferredLang();
-maybeShowLanguagePrompt();
+if (enableLanguagePrompt) maybeShowLanguagePrompt();
 
 document.querySelectorAll('.lang-switch a[data-lang]').forEach((link) => {
     link.addEventListener('click', () => {
