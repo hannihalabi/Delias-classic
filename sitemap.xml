@@ -2,50 +2,68 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://deliassneltransports.nl/</loc>
-    <lastmod>2025-12-16</lastmod>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://deliassneltransports.nl/lang/en/</loc>
-    <lastmod>2025-12-16</lastmod>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://deliassneltransports.nl/lang/de/</loc>
-    <lastmod>2025-12-16</lastmod>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://deliassneltransports.nl/lang/es/</loc>
-    <lastmod>2025-12-16</lastmod>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://deliassneltransports.nl/wegtransport.html</loc>
-    <lastmod>2025-12-16</lastmod>
+    <loc>https://deliassneltransports.nl/diensten/sneltransport/</loc>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://deliassneltransports.nl/luchtvracht.html</loc>
-    <lastmod>2025-12-16</lastmod>
+    <loc>https://deliassneltransports.nl/diensten/spoedtransport/</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deliassneltransports.nl/diensten/internationaal-transport/</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deliassneltransports.nl/diensten/koeriersdienst/</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://deliassneltransports.nl/diensten/luchtvracht/</loc>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://deliassneltransports.nl/zeevracht.html</loc>
-    <lastmod>2025-12-16</lastmod>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://deliassneltransports.nl/spoedtransport.html</loc>
-    <lastmod>2025-12-16</lastmod>
+    <loc>https://deliassneltransports.nl/contact/</loc>
+    <lastmod>2026-01-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>
