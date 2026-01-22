@@ -7,6 +7,28 @@ const defaultLang = 'nl';
 const normalizeLang = (lang) => (lang || defaultLang).toLowerCase().split('-')[0];
 const pageLang = normalizeLang(document.documentElement.lang);
 
+// Google Ads call conversion tracking.
+function gtag_report_conversion(url) {
+    const callback = function () {
+        if (typeof url !== 'undefined') {
+            window.location = url;
+        }
+    };
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17817498588/NNlPCM3txOobENznhbBC',
+            'value': 1.0,
+            'currency': 'SEK',
+            'event_callback': callback
+        });
+    } else if (typeof url !== 'undefined') {
+        window.location = url;
+    }
+
+    return false;
+}
+
 const i18n = {
     en: {
         form: {
